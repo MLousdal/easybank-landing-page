@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap");
 
 /*  Table of contents:
 
@@ -7,20 +7,14 @@
     2. Typography
     3. Layout
         3.1 Misc. Positions
-        3.2 Header
-        3.3 Section
+        3.2 Hero
+        3.3 Why
         3.4 Article
-        3.5 Form
-        3.6 Table
-        3.7 Summary
-        3.8 Footer
-        3.9 Picture
-        3.10 Break line
+        3.5 Footer
     4. Components
         4.1 Nav-bar
-        4.2 Grid
-        4.5 CTA
-        4.9 Icons
+        4.2 CTA
+        4.3 Icons
     5. Media quries
 */
 
@@ -70,12 +64,13 @@ html {
 }
 
 body {
-  font-family: 'Public Sans', sans-serif;
+  font-family: "Public Sans", sans-serif;
   font-weight: 400;
   font-size: 112.5%; /*16px*/
   line-height: 1.75;
   color: var(--color-darkBlue);
   background-color: var(--background-color);
+  overflow-x: hidden;
 }
 
 /*  
@@ -88,7 +83,7 @@ body {
 
 p {
   padding-bottom: var(--spacing-s);
-  max-width: 70ch;
+  max-width: 60ch;
   color: var(--color-grayBlue);
 }
 
@@ -136,9 +131,13 @@ b {
 }
 
 a {
-  font-weight: 700;
   text-decoration: none;
   color: inherit;
+  transition: color 0.2s ease-in;
+}
+
+a:hover:not(.cta) {
+  color: var(--color-limeGreen);
 }
 
 /*  
@@ -225,8 +224,9 @@ a {
 .wrapper::before {
   content: "";
   height: 100%;
-  width: 100%;
-  inset: 0;
+  width: 200vw;
+  left: -50vw;
+  top: 0;
   background-color: inherit;
   position: absolute;
   z-index: -1;
@@ -264,7 +264,7 @@ a {
 .hero-text {
   display: flex;
   flex-flow: column nowrap;
-  max-width: 38%;
+  max-width: max(38%, 22em);
   justify-content: center;
 }
 
@@ -278,19 +278,29 @@ a {
   width: 62%;
 }
 
-.hero-img::before {
+.hero-img::before,
+.hero-img::after {
   content: "";
   position: absolute;
-  top: -18%;
-  right: -53%;
   width: 130%;
   height: 845px;
-  background:  center no-repeat,;
-  background-image: url("../images/image-mockups.png"), url("../images/bg-intro-desktop.svg");
-  background-position: center, top;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 70%, 100%;
+  background-size: contain;
+}
+
+.hero-img::before {
+  top: -32%;
+  right: -51%;
+  background-image: url("../images/bg-intro-desktop.svg");
   z-index: 2;
+}
+
+.hero-img::after {
+  top: -18%;
+  right: -51%;
+  background-image: url("../images/image-mockups.png");
+  z-index: 3;
 }
 
 /* ----- 3.3 Why ----- */
@@ -300,13 +310,21 @@ a {
   padding: var(--spacing-xl) 0;
 }
 
+.why-text {
+  padding-bottom: var(--spacing-l);
+}
+
 .flex-container {
   display: flex;
   gap: var(--spacing-s);
+  flex-flow: row wrap;
+  align-items: stretch;
 }
 
-.flex-container > div {
-  flex: 1 1 0px;
+.salePoint {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
 }
 
 .salePoint img {
@@ -320,10 +338,14 @@ a {
   padding: var(--spacing-xl) 0;
 }
 
-.article {
+.article,
+.salePoint {
   width: 100%;
-  background-color: var(--foreground-color);
   flex: 1 1 281px;
+}
+
+.article {
+  background-color: var(--foreground-color);
 }
 
 .article img {
@@ -335,12 +357,56 @@ a {
   padding: var(--spacing-xs) var(--spacing-s);
 }
 
-/* ----- 3.8 Footer  ----- */
+.article-text h4 {
+  padding-bottom: var(--spacing-xs);
+}
+
+/* ----- 3.5 Footer  ----- */
 
 footer {
   background-color: var(--color-darkBlue);
   padding: var(--spacing-l) 0;
   color: var(--foreground-color);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0 var(--spacing-xl);
+  color: var(--color-grayBlue);
+}
+
+.grid-item1 {
+  grid-column: 1;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.grid-item2 {
+  grid-column: 1;
+  grid-row: 2;
+  gap: var(--spacing-s);
+}
+
+.grid-item3 {
+  grid-column: 2;
+  grid-row: span 2;
+  justify-self: center;
+}
+
+.grid-item4 {
+  grid-column: 3;
+  grid-row: span 2;
+  justify-self: center;
+}
+
+.grid-item5 {
+  grid-column: 4 / span 2;
+  justify-self: end;
+  margin: 0;
+}
+
+.grid-item6 {
+  grid-column: 4 / span 2;
+  grid-row: 2;
+  justify-self: end;
 }
 
 /*  
@@ -359,7 +425,7 @@ nav {
   width: 100%;
   background-color: var(--foreground-color);
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 nav ul {
@@ -384,42 +450,34 @@ nav a:hover:not(.cta) {
   color: var(--color-darkBlue);
   border-bottom: 5px solid black;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to right, var(--color-limeGreen), var(--color-brightCyan));
+  border-image-source: linear-gradient(
+    to right,
+    var(--color-limeGreen),
+    var(--color-brightCyan)
+  );
 }
-
 
 .nav-btn {
   cursor: default;
   pointer-events: none;
   display: none;
-}
-
-.nav-btn img {
   width: var(--spacing-m);
   height: var(--spacing-m);
+  margin: var(--spacing-s) 0;
+  background: url("../images/icon-hamburger.svg") center no-repeat;
 }
 
 .nav-logo {
-  font-size: 1.3333rem;
-  font-weight: 900;
-  font-family: 'Public Sans', sans-serif;
+  height: var(--spacing-m);
+  padding: var(--spacing-s) 0;
 }
 
 #nav-links {
   margin: 0;
+  position: relative;
 }
 
-/* ----- 4.2 Grid ----- */
-
-.grid-main {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: var(--spacing-s);
-  overflow: hidden;
-}
-
-/* ----- 4.3 CTA ----- */
+/* ----- 4.2 CTA ----- */
 .cta {
   font-weight: 400;
   font-size: 100%;
@@ -428,26 +486,28 @@ nav a:hover:not(.cta) {
   border-radius: 50px;
   text-decoration: none;
   border: none;
-  background: linear-gradient(to right, var(--color-limeGreen), var(--color-brightCyan));
+  background: linear-gradient(
+    to right,
+    var(--color-limeGreen),
+    var(--color-brightCyan)
+  );
   color: var(--foreground-color);
   transition: all 0.2s ease-in;
 }
 
 .cta:hover {
-  background: linear-gradient(to right, var(--color-limeGreen), var(--color-brightCyan));
+  background: linear-gradient(to right, hsl(136, 65%, 70%), hsl(192, 70%, 70%));
 }
 
-/* ----- 4.9 Icons ----- */
+/* ----- 4.3 Icons ----- */
 
 .icon {
-  width: var(--spacing-m);
-  height: var(--spacing-m);
-  align-items: center;
+  transition: all 0.2s ease-in;
 }
 
-.icon-white {
-  filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(156deg)
-    brightness(104%) contrast(101%);
+.icon:hover {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(26%) saturate(1228%)
+    hue-rotate(83deg) brightness(98%) contrast(87%);
 }
 
 /*  
@@ -455,15 +515,104 @@ nav a:hover:not(.cta) {
     5. Media quries
     ===============
 */
+@media screen and (max-width: 1300px) {
+  .flex-container {
+    gap: var(--spacing-m);
+  }
+  .salePoint {
+    align-items: center;
+    text-align: center;
+  }
+  .article,
+  .salePoint {
+    flex: 1 1 max(281px, 40%);
+  }
+  .article img {
+    height: 50%;
+  }
+}
 
-@media only screen and (max-width: 770px) {
+@media screen and (max-width: 1000px) {
+  .hero {
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+    padding-bottom: var(--spacing-m);
+    min-height: none;
+    height: min(40rem, 100vh);
+  }
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-img {
+    width: 100%;
+  }
+  .hero-img::before,
+  .hero-img::after {
+    content: "";
+    position: absolute;
+    height: 845px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .hero-img::before {
+    width: 105vw;
+    top: -46em;
+    right: -5%;
+    background-image: url("../images/bg-intro-mobile.svg");
+    background-size: cover;
+  }
+  .hero-img::after {
+    top: -45em;
+    width: 100%;
+    right: 0;
+    background-image: url("../images/image-mockups.png");
+    background-size: 70%;
+  }
+  footer {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+  }
+
+  .grid-item1,
+  .grid-item2,
+  .grid-item3,
+  .grid-item4,
+  .grid-item5,
+  .grid-item6 {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .grid-item1,
+  .grid-item2,
+  .grid-item4,
+  .grid-item5 {
+    margin-bottom: var(--spacing-s);
+  }
+
+  .grid-item2 {
+    gap: var(--spacing-xs);
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .why-text {
+    text-align: center;
+  }
   nav {
     align-items: flex-start;
+    z-index: 10;
   }
   .nav-btn {
     display: block;
     cursor: pointer;
     pointer-events: all;
+    border: none;
+    background-color: inherit;
   }
   #nav-links {
     display: none;
@@ -474,10 +623,101 @@ nav a:hover:not(.cta) {
     transform: translate(-50%);
     width: 90%;
     padding: var(--spacing-s);
-    background-color: var(--color-secondary);
+    background-color: var(--foreground-color);
     border-radius: var(--border-radius);
+    box-shadow: 0 0 400px var(--color-darkBlue);
+    text-align: center;
+    flex-flow: column nowrap;
+    align-items: center;
+    z-index: 5;
   }
   nav li {
     display: flex;
+    text-align: center;
+  }
+  nav a {
+    color: var(--color-darkBlue);
+    padding: var(--spacing-xs);
+  }
+  nav .cta {
+    display: none;
+  }
+  h1 {
+    font-size: 2.7rem;
+  }
+  .hero-img::before {
+    width: 105vw;
+    top: -46rem;
+    right: -5%;
+    background-size: cover;
+  }
+  .hero-img::after {
+    top: -46rem;
+    width: 100%;
+    right: 0;
+    background-size: 70%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .hero-img::before {
+    width: 105vw;
+    top: -44rem;
+    right: -5%;
+    background-size: contain;
+  }
+  .hero-img::after {
+    top: -46rem;
+    width: 100%;
+    right: 0;
+    background-size: 90%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .hero-img::before {
+    width: 105vw;
+    top: -42rem;
+    right: -5%;
+    background-size: contain;
+  }
+  .hero-img::after {
+    top: -42rem;
+    width: 100%;
+    right: 0;
+    background-size: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .hero-img::before {
+    width: 105vw;
+    top: -39rem;
+    right: -5%;
+    background-size: contain;
+  }
+  .hero-img::after {
+    top: -39rem;
+    width: 100%;
+    right: 0;
+    background-size: 90%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .hero-text {
+    padding-top: var(--spacing-s);
+  }
+  .hero-img::before {
+    width: 105vw;
+    top: -37rem;
+    right: -5%;
+    background-size: contain;
+  }
+  .hero-img::after {
+    top: -37.8rem;
+    width: 100%;
+    right: 0;
+    background-size: 90%;
   }
 }

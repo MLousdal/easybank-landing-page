@@ -5,16 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Easybank landing page | frontendmentor</title>
         <meta name="description" content="Easybank landing page, challenge by frontendmentor.io!">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1">
         <link rel="stylesheet" href="assets/css/reset.css">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
         <script src="assets/js/scripts.js" defer></script>
-    </head>
-      <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+        <style>
+            .attribution { font-size: 11px; text-align: center; }
+            .attribution a { color: hsl(228, 45%, 44%); }
+        </style>
 </head>
 <body>
     <nav class="wrapper">
@@ -27,7 +26,7 @@
             <li><a href="#" class="">Careers</a></li>
         </ul>
         <a href="#" class="cta">Request Invite</a>
-        <button onclick="burgerToggle()" class="nav-btn" aria-label="menu"><img src="assets/images/icon-hamburger.svg" alt=""></button>
+        <button onclick="burgerToggle()" class="nav-btn" aria-label="menu"></button>
     </nav>
     <section class="wrapper hero">
         <div class="hero-text">
@@ -38,8 +37,10 @@
         <div class="hero-img"></div>
     </section>
     <section class="wrapper why">
-        <h2>Why choose Easybank?</h2>
-        <p>We leverage Open Banking to turn your bank account into your financial hub. Control your finances like never before.</p>
+        <div class="why-text">
+            <h2>Why choose Easybank?</h2>
+            <p>We leverage Open Banking to turn your bank account into your financial hub. Control your finances like never before.</p>
+        </div>
         <section class="flex-container">
             <article class="salePoint">
                 <img src="assets/images/icon-online.svg" alt>
@@ -70,7 +71,7 @@
                 <img src="assets/images/image-currency.jpg" alt="">
                 <div class="article-text">
                     <span class="small-text">By Claire Robinson</span>
-                    <h4>Receive money in any currency with no fees</h4>
+                    <a href="#"><h4>Receive money in any currency with no fees</h4></a>
                     <p>The world is getting smaller and we’re becoming more mobile. So why should you be forced to only receive money in a single …</p>
                 </div>
             </article>
@@ -78,7 +79,7 @@
                 <img src="assets/images/image-restaurant.jpg" alt="">
                 <div class="article-text">
                     <span class="small-text">By Wilson Hutton</span>
-                    <h4>Treat yourself without worrying about money</h4>
+                    <a href="#"><h4>Treat yourself without worrying about money</h4></a>
                     <p>Our simple budgeting feature allows you to separate out your spending and set realistic limits each month. That means you …</p>
                 </div>
             </article>
@@ -86,7 +87,7 @@
                 <img src="assets/images/image-plane.jpg" alt="">
                 <div class="article-text">
                     <span class="small-text">By Wilson Hutton</span>
-                    <h4>Take your Easybank card wherever you go</h4>
+                    <a href="#"><h4>Take your Easybank card wherever you go</h4></a>
                     <p>We want you to enjoy your travels. This is why we don’t charge any fees on purchases while you’re abroad. We’ll even show you …</p>
                 </div>
             </article>
@@ -94,33 +95,33 @@
                 <img src="assets/images/image-confetti.jpg" alt="">
                 <div class="article-text">
                     <span class="small-text">By Claire Robinson</span>
-                    <h4>Our invite-only Beta accounts are now live!</h4>
+                    <a href="#"><h4>Our invite-only Beta accounts are now live!</h4></a>
                     <p>After a lot of hard work by the whole team, we’re excited to launch our closed beta. It’s easy to request an invite through the site ...</p>
                 </div>
             </article>
         </section>
     </section>
     <footer class="wrapper">
-        <img src="assets/images/logo.svg" alt="logo">
-        <ul class="between-flex">
-            <li><a href="#" class=""><img src="assets/images/icon-facebook.svg"></a></li>
-            <li><a href="#" class=""><img src="assets/images/icon-youtube.svg"></a></li>
-            <li><a href="#" class=""><img src="assets/images/icon-twitter.svg"></a></li>
-            <li><a href="#" class=""><img src="assets/images/icon-pinterest.svg"></a></li>
-            <li><a href="#" class=""><img src="assets/images/icon-instagram.svg"></a></li>
+        <img src="assets/images/logoWhite.svg" alt="logo" class="grid-item1">
+        <ul class="between-flex grid-item2">
+            <li><a href="#" class="icon"><img src="assets/images/icon-facebook.svg" alt=""></a></li>
+            <li><a href="#" class="icon"><img src="assets/images/icon-youtube.svg" alt=""></a></li>
+            <li><a href="#" class="icon"><img src="assets/images/icon-twitter.svg" alt=""></a></li>
+            <li><a href="#" class="icon"><img src="assets/images/icon-pinterest.svg" alt=""></a></li>
+            <li><a href="#" class="icon"><img src="assets/images/icon-instagram.svg" alt=""></a></li>
         </ul>
-        <ul>
+        <ul class="grid-item3">
             <li><a href="#" class="">About</a></li>
             <li><a href="#" class="">Contact</a></li>
             <li><a href="#" class="">Blog</a></li>
         </ul>
-        <ul>
+        <ul class="grid-item4">
             <li><a href="#" class="">Careers</a></li>
             <li><a href="#" class="">Support</a></li>
             <li><a href="#" class="">Privacy Policy</a></li>
         </ul>
-        <a href="#" class="cta">Request Invite</a>
-        <span>© Easybank. All Rights Reserved</span>
+        <a href="#" class="cta grid-item5">Request Invite</a>
+        <span class="grid-item6">© Easybank. All Rights Reserved</span>
     </footer>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 

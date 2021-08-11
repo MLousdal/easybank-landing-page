@@ -1,11 +1,12 @@
 // Burger menu toggle
 function burgerToggle() {
     const navLinks = document.querySelector("#nav-links");
-    // Hvis navLinks er vist, skjul den da
-    if (navLinks.style.display === "block") {
+    const toggler = document.querySelector(".nav-btn");
+    if (navLinks.style.display === "flex") {
         navLinks.style.display = "none";
-    // ellers vis den
+        toggler.style.background = "";
     } else {
-        navLinks.style.display = "block";
+        navLinks.style.display = "flex";
+        toggler.style.background = "url('assets/images/icon-close.svg') center no-repeat";
     }
 }
